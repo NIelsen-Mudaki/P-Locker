@@ -19,6 +19,10 @@ class User:
 
         User.users_list.append(self)
 
+    @classmethod
+    def display_user(cls):
+        return cls.users_list
+
     def delete_user(self):
         '''
             method to delete a saved user from the users_list
@@ -45,6 +49,16 @@ class Credentials:
         self.email = email
         self.password = password
 
-    
+    def save_credentials(self):
+        """
+        method to store a new credential to the credentials list
+        """
+        Credentials.credentials_list.append(self)
+
+    def delete_credentials(self):
+        """
+        delete_credentials method that deletes an account credentials from the credentials_list
+        """
+        Credentials.credentials_list.remove(self)
 
     pass
