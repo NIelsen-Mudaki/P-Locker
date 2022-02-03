@@ -12,6 +12,20 @@ class User:
         self.l_name = l_name
         self.password = password
 
+    def save_user(self):
+        '''
+            method to save users to users_list
+        '''
+
+        User.users_list.append(self)
+
+    def delete_user(self):
+        '''
+            method to delete a saved user from the users_list
+        '''
+
+        User.users_list.remove(self)
+
     pass
 
 
@@ -30,5 +44,7 @@ class Credentials:
         self.user_name = user_name
         self.email = email
         self.password = password
+
+    
 
     pass
