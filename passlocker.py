@@ -21,13 +21,14 @@ class Credentials:
     '''
     credentials_list = []
 
-    def __init__(self,account,user_name,password):
+    def __init__(self,account,user_name,email,password):
         '''
             method to help define credentials of a user. 
         '''
 
         self.account = account
         self.user_name = user_name
+        self.email = email
         self.password = password
 
     pass
