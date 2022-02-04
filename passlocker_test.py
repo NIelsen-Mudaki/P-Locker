@@ -28,18 +28,16 @@ class TestUser(unittest.TestCase):
 
 class TestCredentials(unittest.TestCase):
     """
-    A test class that defines test cases for credentials class
-
+        A test class that defines test cases for credentials class
     """ 
     def setUp(self):
         """
-        Method that runs before each individual credentials test methods run.
-
+            Method that runs before each individual credentials test methods run.
         """
         self.new_credential = Credentials('Gmail','Nielsen-Jumba','jumbanielsen@gmail.com','pass1234')
     def test_init(self):
         """
-        Test case to check if a new Credentials instance has been initialized correctly
+            Test case to check if a new Credentials instance has been initialized correctly
         """
         self.assertEqual(self.new_credential.account,'Gmail')
         self.assertEqual(self.new_credential.user_name,'Nielsen-Jumba')
@@ -48,22 +46,28 @@ class TestCredentials(unittest.TestCase):
 
     def save_credential_tests(self):
         """
-        test case to test if the crential object is saved into the credentials list.
-
+            test case to test if the crential object is saved into the credentials list.
         """
         self.new_credential.save_details()
         self.assertEqual(len(Credentials.credentials_list),1)
 
     def test_delete_credentials(self):
         '''
-            test case to check if a user can be deleted from the users_list
+            test case to check if a credential can be deleted from the credentials_list
         '''
         self.new_credential.save_credentials()
         test_credential = Credentials('Gmail','Nielsen-Jumba','jumbanielsen@gmail.com','pass1234')
         test_credential.save_credentials()
 
         self.new_credential.delete_credentials() #deletes a user
-        self.assertEqual(len(Credentials.credentials_list),1)
+        self.assertEqual(len(Credentials.credentials_list),3)
+
+    def test_display_all_saved_credentials(self):
+        '''
+            method that displays all the credentials that has been saved by the user
+        '''
+
+        self.assertEqual(Credentials.display_credentials(),Credentials.credentials_list)
 
 if __name__ == '__main__':
     unittest.main()

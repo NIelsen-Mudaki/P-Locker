@@ -1,3 +1,5 @@
+import pyperclip
+
 class User:
     '''
         Class to generate new instance of a user.
@@ -60,5 +62,13 @@ class Credentials:
         delete_credentials method that deletes an account credentials from the credentials_list
         """
         Credentials.credentials_list.remove(self)
+
+    @classmethod
+    def display_credentials(cls):
+        """
+        Method that returns all items in the credentials list
+
+        """
+        return cls.credentials_list
 
     pass
