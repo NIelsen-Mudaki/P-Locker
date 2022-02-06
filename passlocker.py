@@ -1,4 +1,5 @@
 import pyperclip
+import random
 
 class User:
     '''
@@ -6,12 +7,11 @@ class User:
     '''
     users_list = []
 
-    def __init__(self,f_name,l_name,password):
+    def __init__(self,username,password):
         '''
         __init__ method that helps to define properties of an object
         '''
-        self.f_name = f_name
-        self.l_name = l_name
+        self.username = username
         self.password = password
 
     def save_user(self):

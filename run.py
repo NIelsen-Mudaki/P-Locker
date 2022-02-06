@@ -62,3 +62,9 @@ def main():
     save_user(new_user(username,password))
 
     print(f'Congratulations {username} you have successfully created your account! Your password is {password}.')
+
+
+
+
+if __name__ == '__main__':
+    main()
