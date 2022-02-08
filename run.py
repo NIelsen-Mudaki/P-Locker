@@ -1,6 +1,5 @@
 #!/usr/bin/env python3.6
 
-from click import password_option
 from passlocker import User, Credentials
 
 def new_user(username,password):
@@ -16,17 +15,25 @@ def save_user(user):
     '''
     user.save_user()
 
+def random_password():
+    '''
+        Method to generate a random password
+    '''
+    generatePassword = User.generate_password()
+    return generatePassword
+
+
 def display_user():
     """
     Function to display existing user
     """
     return User.display_user()
 
-def create_new_credential(account,user_name,email,password):
+def create_new_credential(account,user_name,password):
     """
     Function that creates new credentials for a user
     """
-    new_credential = Credentials(account,user_name,email,password)
+    new_credential = Credentials(account,user_name,password)
     return new_credential
 
 def save_credentials(credentials):
@@ -34,6 +41,19 @@ def save_credentials(credentials):
     Function to save credentials to the credentials list
     """
     credentials.save_credentials()
+
+def login_user(username,password):
+    """
+    function that checks whether a user exist and then login the user in.
+    """
+    check_user = Credentials.verify_user(username,password)
+    return check_user
+
+def display_accounts_details():
+    """
+    Function that returns all the saved credential.
+    """
+    return Credentials.display_credentials()
 
 
 def main():
@@ -59,10 +79,54 @@ def main():
             else:
                 print('To use your account you will need to add a password')
 
-    save_user(new_user(username,password))
+        save_user(new_user(username,password))
 
-    print(f'Congratulations {username} you have successfully created your account! Your password is {password}.')
+        print(f'Congratulations {username} you have successfully created your account! Your password is {password}.')
 
+    elif short_code == "si":
+        print('-' * 20)
+        print('Enter your username and password to log in.')
+        username = input("User name: ")
+        password = input("password: ")
+        login = login_user(username,password)
+        if login_user == login:
+            print(f"Hello {username}.Welcome To PassWord Locker Manager")  
+            print('\n')
+        while True:
+            print("Use these short codes:\n 'cc' - Create a new credential \n 'dc' - Display Credentials \n 'fc' - Find a credential \n 'd' - Delete credential \n 'ex' - Exit the application \n")
+            short_code = input().lower()
+            if short_code == "cc":
+                print("Create New Credential")
+                print('-'*20)
+                print("Account name ....")
+                account = input().lower()
+                print("Your Account username")
+                username = input().lower()
+                while True:
+                    print(" 'tp' - To type your password\n ")
+                    passwordOption = input().lower()
+                    if passwordOption == 'tp':
+                        password = input("Enter Your Own Password: \n")
+                        break
+                    else:
+                        print("Invalid password please try again")
+                save_credentials(create_new_credential(account,username,password))
+                print('\n')
+                print(f"Account Credential for: {account} - UserName: {username} - Password:{password} created succesfully")
+                print('\n')
+            
+            elif short_code == "dc":
+                if display_accounts_details():
+                    print("Here's your list of acoounts: ")
+                    
+                    print('*' * 30)
+                    print('_'* 30)
+                    for account in display_accounts_details():
+                        print(f" Account:{account.account} \n User Name:{username}\n Password:{password}")
+                        print('_'* 30)
+                    print('*' * 30)
+                else:
+                    print("You don't have any credentials saved yet..........")
 
 
 

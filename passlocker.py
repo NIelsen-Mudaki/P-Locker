@@ -32,7 +32,13 @@ class User:
 
         User.users_list.remove(self)
 
-    pass
+    def generate_password(stringLength = 5):
+        '''
+            Function to generate a random password 
+        '''
+
+        randomPassword = random.randint(range(0,10))
+        return randomPassword
 
 
 class Credentials:
@@ -41,14 +47,13 @@ class Credentials:
     '''
     credentials_list = []
 
-    def __init__(self,account,user_name,email,password):
+    def __init__(self,account,user_name,password):
         '''
             method to help define credentials of a user. 
         '''
 
         self.account = account
         self.user_name = user_name
-        self.email = email
         self.password = password
 
     def save_credentials(self):
@@ -71,4 +76,15 @@ class Credentials:
         """
         return cls.credentials_list
 
-    pass
+    credentials_list = []
+    @classmethod
+    def verify_user(cls,username, password):
+        """
+        method to verify whether the user is in our user_list or not
+        """
+        existing_user = ""
+        for user in User.users_list:
+            if(user.username == username and user.password == password):
+                    existing_user == user.username
+        return existing_user
+
