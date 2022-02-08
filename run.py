@@ -55,6 +55,12 @@ def display_accounts_details():
     """
     return Credentials.display_credentials()
 
+def find_credential(account):
+    """
+    Function that finds a Credentials by an account name and returns the Credentials that belong to that account
+    """
+    return Credentials.find_credential(account)
+
 
 def main():
     print("Welcome to the P-Locker password manager*** \n Use the following short codes to proceed*** \n ca - Create Account \n si - Already Have an Account")
@@ -119,15 +125,26 @@ def main():
                 if display_accounts_details():
                     print("Here's your list of acoounts: ")
                     
-                    print('*' * 30)
-                    print('_'* 30)
+                    print('*' * 20)
+                    print('_'* 20)
                     for account in display_accounts_details():
                         print(f" Account:{account.account} \n User Name:{username}\n Password:{password}")
-                        print('_'* 30)
-                    print('*' * 30)
+                        print('_'* 20)
+                    print('*' * 20)
                 else:
                     print("You don't have any credentials saved yet..........")
-
+            elif short_code == "fc":
+                print("Enter the Account Name you want to search for")
+                search_name = input().lower()
+                if find_credential(search_name):
+                    search_credential = find_credential(search_name)
+                    print(f"Account Name : {search_credential.account}")
+                    print('-' * 50)
+                    print(f"User Name: {search_credential.userName} Password :{search_credential.password}")
+                    print('-' * 50)
+                else:
+                    print("That Credential does not exist")
+                    print('\n')
 
 
 if __name__ == '__main__':
