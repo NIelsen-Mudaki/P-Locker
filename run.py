@@ -146,6 +146,22 @@ def main():
                     print("That Credential does not exist")
                     print('\n')
 
+            elif short_code == "d":
+                print("Enter the account name of the Credentials you want to delete")
+                search_name = input().lower()
+                if find_credential(search_name):
+                    search_credential = find_credential(search_name)
+                    print("_"*50)
+                    search_credential.delete_credentials()
+                    print('\n')
+                    print(f"Your stored credentials for : {search_credential.account} successfully deleted!!!")
+                    print('\n')
+                else:
+                    print("The credential you want to delete does not exist in your store")
+            elif short_code == 'ex':
+                print("Thanks for using P-Locker password manager... Hope to see you next time!")
+                break
+
 
 if __name__ == '__main__':
     main()
