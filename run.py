@@ -71,24 +71,20 @@ def main():
         print('Create your New Account here ...')
         print('-' * 20)
         username = input('username: ')
-
         while True:
             print("Select: \n tp - to type your password... \n gp - To generate a unique random password...")
             passwordOption = input("").lower()
             if passwordOption == 'tp':
                 print('Enter Password: ')
-                password = input("")
+                password = input('')
                 break
             elif passwordOption == 'gp':
                 password = random_password()
                 break
             else:
                 print('To use your account you will need to add a password')
-
         save_user(new_user(username,password))
-
-        print(f'Congratulations {username} you have successfully created your account! Your password is {password}.')
-
+        print(f'Congratulations {username}! You have successfully created your account! Your password is {password}.')
     elif short_code == "si":
         print('-' * 20)
         print('Enter your username and password to log in.')
@@ -161,7 +157,9 @@ def main():
                     print("Thanks for using P-Locker password manager... Hope to see you next time!")
                     break
         else:
-            print('Please use the short codes provided in order to access the password manager.')
+            print('Please use the short codes provided in order to access the credential manager.')
+    else:
+        print('Please use the short codes provided in order to access the password manager.')
 
 
 if __name__ == '__main__':
